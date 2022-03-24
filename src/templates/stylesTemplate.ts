@@ -1,7 +1,7 @@
 export function stylesTemplate(componentName: string) {
-  return `
-.${componentName} {
-  
-}
-`.trimLeft();
+  return `import { styled, theme } from "@theme/stitches.config"
+
+  export const  = styled("div", {
+
+  })`.trimLeft();
 }

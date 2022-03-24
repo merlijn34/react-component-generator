@@ -1,9 +1,10 @@
 export enum Language {
-  typeScript = 'ts',
+  typeScript = 'tsx',
   javaScript = 'js',
 }
 
 export enum StyleLanguage {
+  ts = 'ts',
   css = 'css',
   scss = 'scss',
   moduleCss = 'module.css',

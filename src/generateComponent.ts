@@ -3,16 +3,13 @@ import {window, Uri} from 'vscode';
 import {
   writeFile,
   getSetting,
-  readFile,
   readDirectory,
-  openFile,
 } from './utilities';
 import {
-  exportLineTemplate,
-  reactFunctionComponentTemplate,
-  testFileTemplate,
+  typesTemplate,
   stylesTemplate,
   storiesTemplate,
+  indexTemplate,
 } from './templates';
 import {Language, StyleLanguage} from './types';
 
@@ -39,67 +36,34 @@ async function directoryToAddComponent(uri: Uri) {
   return newPath.concat('/components');
 }
 
-async function writeComponentsFolderIndexFile(
-  directory: string,
-  componentName: string,
-  language: Language
-) {
-  const componentsFolderIndexPath = `${directory}/index.${language}`;
-  const componentsFolderIndexContents = await readFile(
-    componentsFolderIndexPath
-  );
-
-  if (componentsFolderIndexContents) {
-    writeFile(
-      componentsFolderIndexPath,
-      componentsFolderIndexContents.concat(
-        exportLineTemplate(componentName, true)
-      )
-    );
-  } else {
-    writeFile(
-      componentsFolderIndexPath,
-      exportLineTemplate(componentName, true)
-    );
-  }
-}
-
 async function writeComponentFiles(directory: string, componentName: string) {
   const language = getSetting<Language>('language', Language.typeScript);
   const stylesLanguage = getSetting<StyleLanguage>(
     'stylesLanguage',
-    StyleLanguage.scss
+    StyleLanguage.ts
   );
   const createStoriesFile = getSetting<boolean>('createStoriesFile', false);
   const verboseStoriesComments = getSetting<boolean>(
     'verboseStoriesComments',
     true
   );
-  const useIndexFile = getSetting<boolean>('useIndexFile', true);
 
   // Write index file
   writeFile(
     `${directory}/${componentName}/index.${language}`,
-    exportLineTemplate(componentName)
+    indexTemplate(componentName)
   );
-
-  // Write component file
-  const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
-  const componentPromise = writeFile(
-    componentPath,
-    reactFunctionComponentTemplate(componentName, stylesLanguage)
+  
+  // Write types file
+  writeFile(
+    `${directory}/${componentName}/index.${language}`,
+    typesTemplate(componentName)
   );
 
   // Write style file
   writeFile(
     `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
     stylesTemplate(componentName)
-  );
-
-  // Write test file
-  writeFile(
-    `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-    testFileTemplate(componentName)
   );
 
   // Write stories file
@@ -109,14 +73,6 @@ async function writeComponentFiles(directory: string, componentName: string) {
       storiesTemplate(componentName, verboseStoriesComments)
     );
   }
-
-  // Write components folder index file
-  if (useIndexFile && !directory.endsWith('app/components')) {
-    writeComponentsFolderIndexFile(directory, componentName, language);
-  }
-
-  await componentPromise;
-  openFile(componentPath);
 }
 
 // This is the function that gets registered to our command

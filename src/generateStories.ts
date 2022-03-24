@@ -9,17 +9,32 @@ async function pathToAddStories(uri: Uri, componentName: string) {
 
   const {path} = uri;
 
-  // if the path is a folder we want to add the stories in the folder
-  if (await readDirectory(path)) {
-    return `${path}/${componentName}.stories.${language}`;
+  // // if the path is a folder we want to add the stories in the folder
+  // if (await readDirectory(path)) {
+  //   return `${path}/${componentName}.stories.${language}`;
+  // }
+
+  // If user clicked on the stories folder, we want to add our new component there
+  if (path.endsWith('stories')) {
+    return path;
+    // If user clicks on a parent folder, we want to add our component to ParentFolder/stories
+  } else if (await readDirectory(path)) {
+    return path.concat('/stories');
   }
 
-  // if the path is a file we want add the stories beside the file
-  const pathArray = path.split('/');
-  pathArray.pop();
-  const newPath = pathArray.join('/');
-
-  return `${newPath}/${componentName}.stories.${language}x`;
+   // Otherwise, we want to work in the ./components folder
+   // if the path is a file we want add the stories beside the file
+   const pathArray = path.split('/');
+   pathArray.pop();
+   const newPath = pathArray.join('/');
+ 
+   if (newPath.endsWith('stories')) {
+     return newPath;
+   }
+ 
+  //  return newPath.concat('/stories');
+   
+  return `${newPath}/${componentName}.stories.${language}x`; // TODO check if this is correct
 }
 
 async function suggestedComponentName(path: string) {
