@@ -1,9 +1,9 @@
 {
-  "name": "react-component-generator",
+  "name": "react-component-generator-merlijn",
   "displayName": "React Component Generator",
   "description": "Generates files needed for new React components",
   "author": {
-    "name": "AndrewMcGoveran"
+    "name": "MerlijnVanDenBerg"
   },
   "version": "1.0.6",
   "engines": {
@@ -18,8 +18,7 @@
     "generator",
     "typescript"
   ],
-  "publisher": "AndrewMcGoveran",
-  "bugs:url": "https://github.com/andrewmcgov/react-component-generator/issues",
+  "publisher": "MerlijnVanDenBerg",
   "activationEvents": [
     "onCommand:extension.generateComponent",
     "onCommand:extension.generateStories"
@@ -102,9 +101,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrewmcgov/react-component-generator"
+    "url": "https://github.com/merlijn34/react-component-generator"
   },
-  "homepage": "https://github.com/andrewmcgov/react-component-generator/blob/main/README.md",
+  "homepage": "https://github.com/merlijn34/react-component-generator/blob/main/README.md",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
     "vscode:prepublish": "yarn run package",
