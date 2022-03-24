@@ -34,7 +34,7 @@ async function pathToAddStories(uri: Uri, componentName: string) {
  
   //  return newPath.concat('/stories');
    
-  return `${newPath}/${componentName}.stories.${language}x`; // TODO check if this is correct
+  return `${newPath}/${componentName}.stories.${language}xxxx`; // TODO check if this is correct
 }
 
 async function suggestedComponentName(path: string) {

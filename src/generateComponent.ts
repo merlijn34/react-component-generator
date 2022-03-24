@@ -50,19 +50,19 @@ async function writeComponentFiles(directory: string, componentName: string) {
 
   // Write index file
   writeFile(
-    `${directory}/${componentName}/index.${language}`,
+    `${directory}/${componentName}/index.${language}x`,
     indexTemplate(componentName)
   );
   
   // Write types file
   writeFile(
-    `${directory}/${componentName}/index.${language}`,
+    `${directory}/${componentName}/types.${language}`,
     typesTemplate(componentName)
   );
 
   // Write style file
   writeFile(
-    `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
+    `${directory}/${componentName}/styles.${stylesLanguage}`,
     stylesTemplate(componentName)
   );
 

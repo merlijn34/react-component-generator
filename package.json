@@ -1,11 +1,12 @@
 {
+  "start": "react-scripts --openssl-legacy-provider start",
   "name": "react-component-generator-merlijn",
   "displayName": "React Component Generator",
   "description": "Generates files needed for new React components",
   "author": {
     "name": "MerlijnVanDenBerg"
   },
-  "version": "1.0.6",
+  "version": "1.0.7",
   "engines": {
     "vscode": "^1.51.0"
   },

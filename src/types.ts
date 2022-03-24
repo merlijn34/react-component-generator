@@ -4,9 +4,5 @@ export enum Language {
 }
 
 export enum StyleLanguage {
-  ts = 'ts',
-  css = 'css',
-  scss = 'scss',
-  moduleCss = 'module.css',
-  moduleScss = 'module.scss',
+  ts = 'ts'
 }
