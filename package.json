@@ -6,7 +6,7 @@
   "author": {
     "name": "MerlijnVanDenBerg"
   },
-  "version": "1.0.7",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.51.0"
   },
@@ -73,8 +73,9 @@
         },
         "reactComponentGenerator.stylesLanguage": {
           "type": "string",
-          "default": "scss",
+          "default": "ts",
           "enum": [
+            "ts",
             "scss",
             "css",
             "module.scss",
