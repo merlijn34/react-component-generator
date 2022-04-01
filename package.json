@@ -73,9 +73,9 @@
         },
         "reactComponentGenerator.stylesLanguage": {
           "type": "string",
-          "default": "scss",
+          "default": "ts",
           "enum": [
-            "scss",
+            "ts",
             "css",
             "module.scss",
             "module.css"
